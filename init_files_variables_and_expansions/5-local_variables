@@ -1,2 +1,2 @@
 #!/bin/bash
-declare -p | sed 's/^declare \(-[a-zA-Z]* \)\?//
+printenv
