@@ -1,2 +1,2 @@
 #!/bin/bash
-echo -e "\nLocal Variables and Functions:"
+declare -p | sed 's/^declare \(-[a-zA-Z]* \)\?//
