@@ -1,2 +1,2 @@
-#!/bin/bash
-count=$(echo $PATH | tr ':' '\n' | wc -l)
+#!/bin/bas
+echo $(echo $PATH | tr ':' '\n' | wc -l)
