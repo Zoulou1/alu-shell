@@ -1,2 +1,2 @@
 #!/bin/bash
-BEST="School" echo "Local variable BEST has been created with the value: $BEST"
+BEST="School" echo "BEST=school"
