@@ -1,3 +1,22 @@
-#!/usr/bin/env bash
-# This script groups visitors by IP and HTTP status code, and displays the data sorted by the number of occurrences
-awk '{print $1, $9}' apache-access.log | sort | uniq -c | sort -nr | awk '{print $1, $2, $3}'
+#!/bin/bash
+# Ensure the log file is passed as an argument
+if [ $# -ne 1 ]; then
+  echo "Usage: $0 <logfile>"
+  exit 1
+fi
+
+logfile=$1
+
+# Process the log file with awk
+awk '
+{
+  ip = $1;
+  code = $9;
+  count[ip " " code]++;
+}
+END {
+  for (entry in count) {
+    print count[entry], entry;
+  }
+}
+' "$logfile" | sort -nr
