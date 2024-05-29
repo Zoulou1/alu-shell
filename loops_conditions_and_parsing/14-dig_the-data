@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Ensure the log file is passed as an argument
 if [ $# -ne 1 ]; then
   echo "Usage: $0 <logfile>"
@@ -7,12 +7,20 @@ fi
 
 logfile=$1
 
+# Check if the file is not empty
+if [ ! -s "$logfile" ]; then
+  echo "The log file is empty or does not exist."
+  exit 1
+fi
+
 # Process the log file with awk
 awk '
 {
-  ip = $1;
-  code = $9;
-  count[ip " " code]++;
+  if (NF >= 9) {
+    ip = $1;
+    code = $9;
+    count[ip " " code]++;
+  }
 }
 END {
   for (entry in count) {
@@ -20,3 +28,9 @@ END {
   }
 }
 ' "$logfile" | sort -nr
+
+# Check the exit status of awk
+if [ $? -ne 0 ]; then
+  echo "Failed to process the log file. Please check the file format."
+  exit
+
