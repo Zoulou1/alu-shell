@@ -1,6 +1,7 @@
-#!/bin/bash
+#!/usr/bin/env bash
+# This script finds and sends a SIGTERM signal to the 7-highlander process
 
-# Find the process ID (PID) of the 7-highlander script and kill it
+# Find the process ID (PID) of the 7-highlander script
 PID=$(pgrep -f 7-highlander)
 
 if [ -n "$PID" ]; then
