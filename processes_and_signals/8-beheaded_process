@@ -6,7 +6,7 @@ PID=$(pgrep -f 7-highlander)
 
 if [ -n "$PID" ]; then
   kill -9 "$PID"
-  echo "7-highlander process has been killed"
+  echo "OK"
 else
   echo "7-highlander process not found"
 fi
