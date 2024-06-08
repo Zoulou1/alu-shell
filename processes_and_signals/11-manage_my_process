@@ -1,9 +1,13 @@
 #!/usr/bin/env bash
-# Manages the script manage_my_process
 
+# This script manages the manage_my_process script by providing start, stop, and restart functionality.
 PID_FILE="/var/run/my_process.pid"
 
 start_process() {
+    if [ -f "$PID_FILE" ]; then
+        echo "manage_my_process is already running"
+        return 1
+    fi
     ./manage_my_process &
     echo $! > "$PID_FILE"
     echo "manage_my_process started"
