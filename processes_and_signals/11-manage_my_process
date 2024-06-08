@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-
 # This script manages the manage_my_process script by providing start, stop, and restart functionality.
 PID_FILE="/var/run/my_process.pid"
 
